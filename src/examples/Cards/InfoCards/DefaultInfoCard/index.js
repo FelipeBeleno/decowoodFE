@@ -25,7 +25,7 @@ import Icon from "@mui/material/Icon";
 import ArgonBox from "components/ArgonBox";
 import ArgonTypography from "components/ArgonTypography";
 
-function DefaultInfoCard({ color, icon, title, description, value }) {
+function DefaultInfoCard({ color, icon, title, description, value, onPress, fn }) {
   return (
     <Card>
       <ArgonBox p={2} mx={3} display="flex" justifyContent="center">
@@ -40,8 +40,15 @@ function DefaultInfoCard({ color, icon, title, description, value }) {
           shadow="md"
           borderRadius="lg"
           variant="gradient"
+          sx={{cursor: onPress? 'pointer' : ''}}
+          onClick={()=>{ if(fn){
+            fn()
+          }else{
+            console.log('')
+          }}}
         >
-          <Icon fontSize="default">{icon}</Icon>
+          
+          <Icon  fontSize="default">{icon}</Icon>
         </ArgonBox>
       </ArgonBox>
       <ArgonBox pb={2} px={2} textAlign="center" lineHeight={1.25}>
@@ -69,6 +76,7 @@ DefaultInfoCard.defaultProps = {
   color: "info",
   value: "",
   description: "",
+  onPress: false
 };
 
 // Typechecking props for the DefaultInfoCard
@@ -78,6 +86,8 @@ DefaultInfoCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  onPress: PropTypes.string,
+  fn: PropTypes.func
 };
 
 export default DefaultInfoCard;

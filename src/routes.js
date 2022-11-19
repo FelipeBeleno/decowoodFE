@@ -48,9 +48,9 @@ const routes = [
   {
     expo: 'private',
     type: "route",
-    name: "Buzón",
-    key: "buzón",
-    route: "/buzon",
+    name: "Home",
+    key: "home",
+    route: "/home",
     icon: <ArgonBox component="i" color="primary" fontSize="14px" className="ni ni-tv-2" />,
     component: <Dashboard />,
   },
@@ -68,9 +68,9 @@ const routes = [
   {
     expo: 'private',
     type: "route",
-    name: "Denuncias",
-    key: "denuncias",
-    route: "/denuncias",
+    name: "Cuadros",
+    key: "cuadros",
+    route: "/cuadros",
     icon: <ArgonBox component="i" color="success" fontSize="14px" className="ni ni-credit-card" />,
     component: <Billing />,
   },
@@ -121,7 +121,6 @@ const routes = [
     icon: <ArgonBox component="i" color="info" fontSize="14px" className="ni ni-collection" />,
     component: <SignUp />,
   },
-  //forgot-password
   {
     expo: 'public',
     type: "route",
@@ -130,6 +129,15 @@ const routes = [
     route: "/authentication/forgot-password",
     icon: <ArgonBox component="i" color="info" fontSize="14px" className="ni ni-collection" />,
     component: <SignIn />,
+  },
+  {
+    expo: 'public',
+    type: "route",
+    name: "imagenCliente",
+    key: "imagenCliente",
+    route: "/imagenCliente/:id",
+    icon: <ArgonBox component="i" color="info" fontSize="14px" className="ni ni-collection" />,
+    component: <SignUp />,
   }
 ];
 

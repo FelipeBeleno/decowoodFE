@@ -66,7 +66,7 @@ function CoverLayout({ title, description, image, imgPosition, button, children 
           backgroundRepeat: "no-repeat",
         }}
       >
-        <Grid container spacing={3} justifyContent="center" sx={{ textAlign: "center" }}>
+        <Grid container spacing={3}  justifyContent="center" sx={{ textAlign: "center" }}>
           <Grid item xs={10} lg={4}>
             <ArgonBox mb={1}>
               <ArgonTypography variant="h1" color="white" fontWeight="bold">
@@ -81,9 +81,9 @@ function CoverLayout({ title, description, image, imgPosition, button, children 
           </Grid>
         </Grid>
       </ArgonBox>
-      <ArgonBox mt={{ xs: -26, lg: -24 }} px={1} width="calc(100% - 2rem)" mx="auto">
+      <ArgonBox mt={{ xs: -26, lg: -24 }} px={1} width="calc(100% - 1rem)" mx="auto">
         <Grid container justifyContent="center">
-          <Grid item xs={11} sm={9} md={5} lg={4} xl={3}>
+          <Grid item xs={11} sm={9} md={9} lg={9} xl={9}>
             {children}
           </Grid>
         </Grid>

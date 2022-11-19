@@ -1,0 +1,19 @@
+.image-render{
+    text-align: center;
+    padding: 20px;
+    border: 3px #11cdef dashed;
+    border-radius: 20px;
+    width: 100%;
+    max-width: auto;
+    height: 25rem;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-render-backguound{
+    background-color: red;
+    border: none
+
+}

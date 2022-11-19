@@ -17,102 +17,154 @@ Coded by www.creative-tim.com
 // @mui material components
 import Grid from "@mui/material/Grid";
 import Icon from "@mui/material/Icon";
+import Card from "@mui/material/Card";
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 // Argon Dashboard 2 MUI components
 import ArgonBox from "components/ArgonBox";
 import ArgonTypography from "components/ArgonTypography";
+import ArgonInput from "components/ArgonInput";
+import ArgonButton from "components/ArgonButton";
+import ArgonAlert from "components/ArgonAlert";
+
 
 // Argon Dashboard 2 MUI example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
-import DetailedStatisticsCard from "examples/Cards/StatisticsCards/DetailedStatisticsCard";
-import SalesTable from "examples/Tables/SalesTable";
-import CategoriesList from "examples/Lists/CategoriesList";
-import GradientLineChart from "examples/Charts/LineCharts/GradientLineChart";
+import { useState } from "react";
 
-// Argon Dashboard 2 MUI base styles
-import typography from "assets/theme/base/typography";
-
-// Dashboard layout components
-import Slider from "layouts/dashboard/components/Slider";
-
-// Data
-import gradientLineChartData from "layouts/dashboard/data/gradientLineChartData";
-import salesTableData from "layouts/dashboard/data/salesTableData";
-import categoriesListData from "layouts/dashboard/data/categoriesListData";
 
 function Default() {
-  const { size } = typography;
+
+  const [generateUrl, setGenerateUrl] = useState(false)
+
+  const [copiado, setCopiado] = useState(false)
+
+  const [dataForm, setDataForm] = useState({})
+
+  const [token] = useState('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNmYwZDdkYTRmMzAwNjU3YzVmNDJkMiIsImlhdCI6MTY2ODgzMjA0MiwiZXhwIjoxNjY4ODUzNjQyfQ.TUPJMm9jY3_A3ZzoQqd6YZeJtZB4kt05UMlMTi6eU1g')
+
+  const [dataUrl, setDataUrl] = useState({})
+
+  function onChange({ target }) {
+    setDataForm({
+      ...dataForm,
+      [target.name]: target.value
+    })
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+
+    const body =  await fetch('http://localhost:8080/api/currentImg', {
+      method:'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        "Access-Control-Allow-Origin": "*",
+        "x-token": token
+      },
+      body: JSON.stringify(dataForm)
+    });
+
+    const response = await body.json();
+
+    setDataUrl(response.data);
+
+    setGenerateUrl(true)
+
+
+  }
+
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
       <ArgonBox py={3}>
+
         <Grid container spacing={3} mb={3}>
-          <Grid item xs={12} md={6} lg={3}>
-            <DetailedStatisticsCard
-              title="today's money"
-              count="$53,000"
-              icon={{ color: "info", component: <i className="ni ni-money-coins" /> }}
-              percentage={{ color: "success", count: "+55%", text: "since yesterday" }}
-            />
+          <Grid item xs={12} md={12}>
+
           </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <DetailedStatisticsCard
-              title="today's users"
-              count="2,300"
-              icon={{ color: "error", component: <i className="ni ni-world" /> }}
-              percentage={{ color: "success", count: "+3%", text: "since last week" }}
-            />
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <DetailedStatisticsCard
-              title="new clients"
-              count="+3,462"
-              icon={{ color: "success", component: <i className="ni ni-paper-diploma" /> }}
-              percentage={{ color: "error", count: "-2%", text: "since last quarter" }}
-            />
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <DetailedStatisticsCard
-              title="sales"
-              count="$103,430"
-              icon={{ color: "warning", component: <i className="ni ni-cart" /> }}
-              percentage={{ color: "success", count: "+5%", text: "than last month" }}
-            />
-          </Grid>
-        </Grid>
-        <Grid container spacing={3} mb={3}>
-          <Grid item xs={12} lg={7}>
-            <GradientLineChart
-              title="Sales Overview"
-              description={
-                <ArgonBox display="flex" alignItems="center">
-                  <ArgonBox fontSize={size.lg} color="success" mb={0.3} mr={0.5} lineHeight={0}>
-                    <Icon sx={{ fontWeight: "bold" }}>arrow_upward</Icon>
-                  </ArgonBox>
-                  <ArgonTypography variant="button" color="text" fontWeight="medium">
-                    4% more{" "}
-                    <ArgonTypography variant="button" color="text" fontWeight="regular">
-                      in 2022
-                    </ArgonTypography>
-                  </ArgonTypography>
+          <Grid item xs={12} md={generateUrl ? 6 : 12} p={3}>
+            <Card sx={{ position: "relative", display: "block", height: "100%", overflow: "hidden", padding: 3 }} >
+              <ArgonTypography
+                fontWeight="medium"
+                variant="h3"
+              >Crea la url</ArgonTypography>
+
+              <ArgonBox onSubmit={handleSubmit} component="form" role="form" mt={5}>
+                <ArgonBox mb={1} >
+                  <ArgonTypography variant="body1">Fecha caducidad</ArgonTypography>
                 </ArgonBox>
-              }
-              chart={gradientLineChartData}
-            />
+                <ArgonBox mb={3} >
+                  <ArgonInput onChange={onChange} name="fechaCaducidad" type="datetime-local" placeholder="Correo Institucional" size="large" />
+                </ArgonBox>
+                <ArgonBox mb={1} >
+                  <ArgonTypography variant="body1">Codigo imagen</ArgonTypography>
+                </ArgonBox>
+                <ArgonBox mb={3}>
+                  <ArgonInput onChange={onChange} name="idImg" type="text" placeholder={"Imagen"} size="large" />
+                </ArgonBox>
+
+                <ArgonButton variant="contained" type="submit" fullWidth color="info">Generar</ArgonButton>
+
+              </ArgonBox>
+
+            </Card>
           </Grid>
-          <Grid item xs={12} lg={5}>
-            <Slider />
-          </Grid>
-        </Grid>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={8}>
-            <SalesTable title="Sales by Country" rows={salesTableData} />
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <CategoriesList title="categories" categories={categoriesListData} />
-          </Grid>
+
+          {
+            generateUrl
+            &&
+            <Grid item xs={12} md={6} p={3}>
+              <Card sx={{ position: "relative", display: "block", height: "100%", overflow: "hidden", padding: 3 }} >
+
+                <ArgonTypography
+                  fontWeight="medium"
+                  variant="h3"
+                >Url generada</ArgonTypography>
+
+                <Grid
+                  container
+                  mt={3}
+                  direction="column"
+                  justifyContent="space-evenly"
+                >
+
+                  <Grid item xs={12} md={12} >
+
+                    <p
+                    style={{wordWrap:'anywhere'}}
+                      
+                    >{dataUrl.url}</p>
+                  </Grid>
+
+                  <Grid item xs={12} md={12} mt={2} >
+                    <ArgonButton fullWidth component="contained" onClick={async () => {
+                      await navigator.clipboard.writeText(dataUrl.url)
+                      setCopiado(!copiado)
+                    }}>
+                      <Icon fontSize="default" ><ContentCopyIcon /></Icon>
+                    </ArgonButton>
+                  </Grid>
+                  {
+                    copiado
+                    &&
+                    <Grid item xs={12} mt={3} >
+                      <ArgonAlert color="success" dismissible>Texto copiado</ArgonAlert>
+                    </Grid>
+
+                  }
+                </Grid>
+
+              </Card>
+            </Grid>
+          }
+
+
         </Grid>
       </ArgonBox>
       <Footer />

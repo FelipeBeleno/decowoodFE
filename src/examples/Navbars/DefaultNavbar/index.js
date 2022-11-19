@@ -107,76 +107,20 @@ function DefaultNavbar({ brand, transparent, light, action }) {
             </ArgonTypography>
           </ArgonBox>
           <ArgonBox color="inherit" display={{ xs: "none", lg: "flex" }} m={0} p={0}>
-            <DefaultNavbarLink
-              icon="donut_large"
-              name="dashboard"
-              route="/dashboard"
-              light={light}
-            />
-            <DefaultNavbarLink icon="person" name="profile" route="/profile" light={light} />
-            <DefaultNavbarLink
-              icon="account_circle"
-              name="sign up"
-              route="/authentication/sign-up"
-              light={light}
-            />
-            <DefaultNavbarLink
-              icon="key"
-              name="sign in"
-              route="/authentication/sign-in"
-              light={light}
-            />
-          </ArgonBox>
-          {action &&
-            (action.type === "internal" ? (
-              <ArgonBox display={{ xs: "none", lg: "inline-block" }}>
-                <ArgonButton
-                  component={Link}
-                  to={action.route}
-                  variant={action.variant ? action.variant : "contained"}
-                  color={action.color ? action.color : "info"}
-                  size="small"
-                >
-                  {action.label}
-                </ArgonButton>
-              </ArgonBox>
-            ) : (
-              <ArgonBox display={{ xs: "none", lg: "inline-block" }}>
-                <ArgonButton
-                  component="a"
-                  href={action.route}
-                  target="_blank"
-                  rel="noreferrer"
-                  variant={action.variant ? action.variant : "contained"}
-                  color={action.color ? action.color : "info"}
-                  size="small"
-                  sx={{ mt: -0.3 }}
-                >
-                  {action.label}
-                </ArgonButton>
-              </ArgonBox>
-            ))}
-          <ArgonBox
-            display={{ xs: "inline-block", lg: "none" }}
-            lineHeight={0}
-            py={1.5}
-            pl={1.5}
-            color="inherit"
-            sx={{ cursor: "pointer" }}
-            onClick={openMobileNavbar}
-          >
-            <Icon fontSize="default">{mobileNavbar ? "close" : "menu"}</Icon>
+
+            <DefaultNavbarLink icon="person" name="Ingresa" route="/authentication/sign-in" light={light} />
+
           </ArgonBox>
         </ArgonBox>
       </ArgonBox>
-      {mobileView && <DefaultNavbarMobile open={mobileNavbar} close={closeMobileNavbar} />}
+    
     </Container>
   );
 }
 
 // Declaring default props for DefaultNavbar
 DefaultNavbar.defaultProps = {
-  brand: "Argon Dashboard 2",
+  brand: "Decowood",
   transparent: false,
   light: false,
   action: false,
