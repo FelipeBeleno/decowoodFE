@@ -39,6 +39,7 @@ import Dropzone from "components/DropZone/DropZone"
 import ArgonAlert from "components/ArgonAlert";
 import { functionFetch } from "helpers/functionFetch";
 import ArgonAvatar from "components/ArgonAvatar";
+import { backendURL } from "helpers/variablesEntorno";
 
 
 
@@ -47,7 +48,7 @@ import ArgonAvatar from "components/ArgonAvatar";
 
 function Billing() {
 
-  const [token] = useState('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNmYwZDdkYTRmMzAwNjU3YzVmNDJkMiIsImlhdCI6MTY2ODgzMjA0MiwiZXhwIjoxNjY4ODUzNjQyfQ.TUPJMm9jY3_A3ZzoQqd6YZeJtZB4kt05UMlMTi6eU1g')
+  const [token] = useState(localStorage.getItem('x-token'))
 
   const [board, setBoard] = useState('')
 
@@ -80,7 +81,7 @@ function Billing() {
   }, [board])
 
   async function hanldeDelete(id) {
-    const body = await fetch('http://localhost:8080/api/productos/'+id, {
+    const body = await fetch(backendURL+'api/productos/' + id, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',
@@ -89,13 +90,13 @@ function Billing() {
         "x-token": token
       }
     });
-    const response = await body.json() 
+    const response = await body.json()
     getImages()
   }
 
   async function getImages() {
 
-    const body = await fetch('http://localhost:8080/api/productos', {
+    const body = await fetch(backendURL+'api/productos', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -133,7 +134,7 @@ function Billing() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const body = await fetch('http://localhost:8080/api/productos', {
+    const body = await fetch(backendURL+'api/productos', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

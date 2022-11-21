@@ -40,7 +40,7 @@ import SidenavRoot from "examples/Sidenav/SidenavRoot";
 import sidenavLogoLabel from "examples/Sidenav/styles/sidenav";
 
 // image logo
-import KPMG_LOGO from 'assets/images/KPMG_LOGO.png'
+import decowood from 'assets/images/decowood.jpg'
 
 // Argon Dashboard 2 MUI context
 import { useArgonController, setMiniSidenav } from "context";
@@ -136,7 +136,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
             <Icon sx={{ fontWeight: "bold" }}>close</Icon>
           </ArgonTypography>
         </ArgonBox>
-        <ArgonBox component="img" src={KPMG_LOGO} alt="Argon Logo" width="50%" heigth="100%" mr={0.25} />
+        <ArgonBox component="img" src={decowood} alt="Argon Logo" width="50%" heigth="100%" mr={0.25} />
       </ArgonBox>
       <Divider light={darkSidenav} />
       <List>{renderRoutes}</List>

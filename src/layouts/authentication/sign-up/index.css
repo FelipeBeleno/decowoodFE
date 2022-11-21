@@ -3,7 +3,7 @@
     padding: 20px;
     border: 3px #11cdef dashed;
     border-radius: 20px;
-    width: 100%;
+    width: auto;
     max-width: auto;
     height: 25rem;
     overflow: auto;

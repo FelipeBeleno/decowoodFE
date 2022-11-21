@@ -32,7 +32,8 @@ import ArgonAlert from "components/ArgonAlert";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { backendURL } from "helpers/variablesEntorno";
 
 
 function Default() {
@@ -43,7 +44,7 @@ function Default() {
 
   const [dataForm, setDataForm] = useState({})
 
-  const [token] = useState('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNmYwZDdkYTRmMzAwNjU3YzVmNDJkMiIsImlhdCI6MTY2ODgzMjA0MiwiZXhwIjoxNjY4ODUzNjQyfQ.TUPJMm9jY3_A3ZzoQqd6YZeJtZB4kt05UMlMTi6eU1g')
+  const [token] = useState(localStorage.getItem('x-token'))
 
   const [dataUrl, setDataUrl] = useState({})
 
@@ -54,12 +55,11 @@ function Default() {
     })
   }
 
+
   async function handleSubmit(e) {
     e.preventDefault();
-
-
-    const body =  await fetch('http://localhost:8080/api/currentImg', {
-      method:'POST',
+    const body = await fetch(backendURL+'api/currentImg', {
+      method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -75,8 +75,33 @@ function Default() {
 
     setGenerateUrl(true)
 
+  }
+
+  useEffect(() => {
+    getToken()
+  }, [])
+
+  async function getToken() {
+
+    const body = await fetch(backendURL+'api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        "Access-Control-Allow-Origin": "*"
+      },
+      body: JSON.stringify({
+        "password": "123456",
+        "email": "felipebelenoo1101@gmail.com"
+      })
+
+    })
+    let response = await body.json()
+
+    localStorage.setItem('x-token', response.token)
 
   }
+
 
 
   return (
@@ -137,8 +162,8 @@ function Default() {
                   <Grid item xs={12} md={12} >
 
                     <p
-                    style={{wordWrap:'anywhere'}}
-                      
+                      style={{ wordWrap: 'anywhere' }}
+
                     >{dataUrl.url}</p>
                   </Grid>
 
@@ -167,7 +192,7 @@ function Default() {
 
         </Grid>
       </ArgonBox>
-      <Footer />
+      {/*  <Footer /> */}
     </DashboardLayout>
   );
 }

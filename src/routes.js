@@ -35,9 +35,7 @@ Coded by www.creative-tim.com
 
 // Argon Dashboard 2 MUI layouts
 import Dashboard from "layouts/dashboard";
-import Tables from "layouts/tables";
 import Billing from "layouts/billing";
-import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
 
@@ -57,49 +55,11 @@ const routes = [
   {
     expo: 'private',
     type: "route",
-    name: "Clientes",
-    key: "clientes",
-    route: "/clientes",
-    icon: (
-      <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
-    ),
-    component: <Tables />,
-  },
-  {
-    expo: 'private',
-    type: "route",
     name: "Cuadros",
     key: "cuadros",
     route: "/cuadros",
     icon: <ArgonBox component="i" color="success" fontSize="14px" className="ni ni-credit-card" />,
     component: <Billing />,
-  },
-  {
-    expo: 'private',
-    type: "route",
-    name: "Usuarios",
-    key: "usuarios",
-    route: "/usuarios",
-    icon: <ArgonBox component="i" color="info" fontSize="14px" className="ni ni-app" />,
-    component: <Billing />,
-  },
-  {
-    expo: 'private',
-    type: "route",
-    name: "Log Consultas",
-    key: "log-consultas",
-    route: "/log-consultas",
-    icon: <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />,
-    component: <Billing />,
-  },
-  {
-    expo: 'private',
-    type: "route",
-    name: "Profile",
-    key: "profile",
-    route: "/profile",
-    icon: <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />,
-    component: <Profile />,
   },
   {
     expo: 'public',

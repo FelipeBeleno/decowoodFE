@@ -160,6 +160,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
         </ArgonBox>
         {isMini ? null : (
           <ArgonBox sx={(theme) => navbarRow(theme, { isMini })}>
+            {/* 
             <ArgonBox pr={1}>
               <ArgonInput
                 placeholder="Type here..."
@@ -218,6 +219,15 @@ function DashboardNavbar({ absolute, light, isMini }) {
               </IconButton>
               {renderMenu()}
             </ArgonBox>
+          */}
+            <IconButton
+              size="small"
+              color={light && transparentNavbar ? "white" : "dark"}
+              sx={navbarMobileMenu}
+              onClick={handleMiniSidenav}
+            >
+              <Icon>{miniSidenav ? "menu_open" : "menu"}</Icon>
+            </IconButton>
           </ArgonBox>
         )}
       </Toolbar>
