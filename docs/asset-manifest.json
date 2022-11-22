@@ -11,7 +11,7 @@
     "static/media/nucleo-icons.woff": "./static/media/nucleo-icons.c82c9b7c40130b7116d3.woff",
     "static/media/nucleo-icons.woff2": "./static/media/nucleo-icons.cba267483aa6a7cb6e33.woff2",
     "static/media/logo-spotify.svg": "./static/media/logo-spotify.e83cf56c9d99a1fdf59e8deb58bbe470.svg",
-    "index.html": "/index.html"
+    "index.html": "./index.html"
   },
   "entrypoints": [
     "./static/css/main.c086192e.css",
