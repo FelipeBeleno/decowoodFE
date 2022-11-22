@@ -58,7 +58,7 @@ function Default() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const body = await fetch(backendURL+'api/currentImg', {
+    const body = await fetch(backendURL+'/api/currentImg', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -83,7 +83,7 @@ function Default() {
 
   async function getToken() {
 
-    const body = await fetch(backendURL+'api/auth/login', {
+    const body = await fetch(backendURL+'/api/auth/login', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

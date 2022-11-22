@@ -1,10 +1,7 @@
 {
-  "name": "argon-dashboard-mui",
-  "version": "3.0.0",
-  "author": "Creative Tim",
-  "license": "SEE LICENSE IN <https://www.creative-tim.com/license>",
-  "description": "React version of Argon Dashboard 2 by Creative Tim",
-  "homepage": "https://demos.creative-tim.com/argon-dashboard-material-ui/",
+  "name": "decowood",
+  "version": "0.1.0",
+  "private": true,
   "bugs": {
     "url": "https://github.com/creativetimofficial/argon-dashboard-material-ui/issues"
   },

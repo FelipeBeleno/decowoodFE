@@ -81,7 +81,7 @@ function Billing() {
   }, [board])
 
   async function hanldeDelete(id) {
-    const body = await fetch(backendURL+'api/productos/' + id, {
+    const body = await fetch(backendURL+'/api/productos/' + id, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',
@@ -96,7 +96,7 @@ function Billing() {
 
   async function getImages() {
 
-    const body = await fetch(backendURL+'api/productos', {
+    const body = await fetch(backendURL+'/api/productos', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -134,7 +134,7 @@ function Billing() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const body = await fetch(backendURL+'api/productos', {
+    const body = await fetch(backendURL+'/api/productos', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

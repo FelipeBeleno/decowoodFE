@@ -104,7 +104,7 @@ function Cover() {
 
   async function getInfo(id) {
 
-    const body = await fetch( backendURL+'api/currentImg/' + id);
+    const body = await fetch( backendURL+'/api/currentImg/' + id);
     const response = await body.json();
     console.log(response.data)
     setDataPg(response.data)
